@@ -57,7 +57,14 @@
 
 # Technical Analysis
 ## Affected Systems & Data
+Due to insufficient network access controls, the unauthorized entity established initial access and waited (dwell time), before continuing operations. The attacker successfully gain control over the following devices:
+- `azuki-fileserver01`
+- `kenji.sato`
+  
 ## Evidence Sources & Analysis
+After establishing initial access on November 19, 2025, network monitoring within the SOC detected the attacker returning approximately 72 hours later (`2025-11-22T00:27:58.4166424Z`). Suspicious lateral movement and large data transfers were observed overnight on the file server.<br>
+
+From the logs, 
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
 ## Root Cause Analysis
