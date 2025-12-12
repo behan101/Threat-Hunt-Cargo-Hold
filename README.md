@@ -40,21 +40,27 @@
 - The SOC and DFIR teams exclusively managed the incident response procedures internally. Immediate action was taken to isolate the compromised systems from the network through the use of VLAN segmentation. To facilitate a comprehensive investigation, the SOC and DFIR teams gathered extensive data which included network traffic capture files. Additionally, all affected systems were plugged to a host security solution and all event logs were automatically collected by the existing SIEM.
 
 ## Stakeholder Impact:
-## Customers:
-## Business Partners:
-## Regulatory Bodies:
-## Shareholders:
+### Customers:
+- The credentials of IT accounts were exfiltrated and there is a potential that customer information may have been impacted as well. There is a potential of future impersonation of IT staff and the possibility of customer data being at risk. Concerns with confidentiality of customer data is a priority and as a precautionary measure, some services were temporarily taken offline. In addition, some API keys were revoked which may have led to a brief period of downtime for customers. The financial implications of this downtime are currently being assessed but could result in the loss of revenue and customer trust.
+
+### Employees:
+- The compromised device `azuki-fileserver01` which housed sensitive employee information, has been identified as a major risk to employees. There have already been a known remote accessed account `kenji.sato` that has been identified to have been compromised earlier and eventually led to this particular incident. The potential for identity theft, phishing attacks, and unauthorized acccess is critical.
+
+### Business Partners:
+- The fileserver affected by this incident has been known to hold information with business partners and company data. The unintended distribution of proprietary code or technology is concerning. There may have ramifications for business partners who rely on the integrity and exclusivity of Azuki Import/Export.
+
+### Regulatory Bodies:
+- The breach of systems could have compliance implications. Regulatory bodies may impose fines or sanctions on Azuki Import/Export for failing to adequately protect sensitive data. This ultimately falls on the jurisdiction and nature of the compromised data.
+
+### Shareholders:
+- This incident could have a short-term negative impact on stock prices due to the potential loss of customer trust and possible regulatory fines. Long-term effects will depend on the effectiveness of remedial actions taken and the company's ability to restore stakeholder confidence.
 
 # Technical Analysis
-
-# Affected Systems & Data
-
-# Evidence Sources & Analysis
-
-# Indicators of Compromise (IoCs)
-## C2 IP:
-
-# Root Cause Analysis
+## Affected Systems & Data
+## Evidence Sources & Analysis
+## Indicators of Compromise (IoCs)
+### C2 IP:
+## Root Cause Analysis
 
 # Technical Timeline
 ## Initial Compromise
