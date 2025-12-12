@@ -68,7 +68,9 @@ Due to insufficient network access controls, the unauthorized entity established
 ## Evidence Sources & Analysis
 After establishing initial access on November 19, 2025, network monitoring within the SOC detected the attacker returning approximately 72 hours later (`2025-11-22T00:27:58.4166424Z`). Suspicious lateral movement and large data transfers were observed overnight on the file server.<br>
 
-From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service. Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`. Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`.
+From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service. Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`. Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`.<br>
+
+The earliest signs of malicious command execution point to `azuki-fileserver01` being compromised. This is likely due to 
 
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
