@@ -73,6 +73,20 @@ After establishing initial access on November 19, 2025, network monitoring withi
 
 The remote IP `159.26.106.98` made a successful logon to the device `azuki-sl` through the compromised account `kenji.sato` at `2025-11-22T00:27:58.4166424Z`. After this point, suspicious actions were taken and malicious intent were apparent.<br>
 
+<img width="1968" height="498" alt="image" src="https://github.com/user-attachments/assets/ec2d9532-d6c5-46cf-b2e4-656478fc04dd" />
+
+Lateral movement was observed accross many devices which was sourced from a Remote Access Tool (RAT) with the process name `mstsc.exe`.
+
+<img width="1781" height="553" alt="image" src="https://github.com/user-attachments/assets/74724b07-62a7-4bf4-a785-416eb6a43c1b" />
+
+Queries for the any remote sessions with successful logon attempts discovered suspicious activity involving the critical fileserver `azuki-fileserver01`.
+
+<img width="1816" height="488" alt="image" src="https://github.com/user-attachments/assets/fcc5792a-a78c-44de-9fa7-00a9b9c77d53" />
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 The earliest signs of malicious command execution point to the unauthorized download of a suspicious script by using legitimate system utilities with network access.
 
 <img width="1312" height="362" alt="image" src="https://github.com/user-attachments/assets/bdfc9daa-9aa9-45d9-a224-d1e78b632100" />
