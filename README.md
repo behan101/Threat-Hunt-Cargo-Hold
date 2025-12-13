@@ -93,6 +93,16 @@ Continual lateral movement was observed and reached an administrative account `f
 
 At `2025-11-22T00:40:54.8271951Z`, the initial enumeration attempts were conducted using the `"net.exe" share` command. Proceeding this command, enumeration of remote shares were found to identify accessible file servers and data repositories across the network. This was executed by the command `"net.exe" view \\10.1.0.188` at `2025-11-22T00:42:01.9579347Z`.
 
+<img width="1587" height="432" alt="image" src="https://github.com/user-attachments/assets/381aee74-2986-4a2c-960a-b84ff2c934fe" />
+
+Privilege enumeration tactics continued with intent to determine what actions can be performed and whether privilege esclation is required.
+
+<img width="1529" height="397" alt="image" src="https://github.com/user-attachments/assets/1bd58659-5f3f-463e-9eb0-53a083a512b3" />
+
+Network configuration enumeration actions were performed in order to scope the environment, identify domain membership, and discover additional network segments.
+
+<img width="1558" height="397" alt="image" src="https://github.com/user-attachments/assets/32e20007-5f59-46d0-b5ce-c22fd74fa1a0" />
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
