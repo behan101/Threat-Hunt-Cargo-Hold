@@ -87,6 +87,12 @@ Queries for the any remote sessions with successful logon attempts discovered su
 
 <img width="1816" height="488" alt="image" src="https://github.com/user-attachments/assets/fcc5792a-a78c-44de-9fa7-00a9b9c77d53" />
 
+Continual lateral movement was observed and reached an administrative account `fileadmin`. This account was then used for privilege escalation and enumeration tactics.
+
+<img width="1756" height="543" alt="image" src="https://github.com/user-attachments/assets/237afb96-5af7-439a-a50a-8b92fa8077ea" />
+
+At `2025-11-22T00:40:54.8271951Z`, the initial enumeration attempts were conducted using the `"net.exe" share` command. Proceeding this command, enumeration of remote shares were found to identify accessible file servers and data repositories across the network. This was executed by the command `"net.exe" view \\10.1.0.188` at `2025-11-22T00:42:01.9579347Z`.
+
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
