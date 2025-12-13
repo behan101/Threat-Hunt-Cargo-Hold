@@ -31,7 +31,7 @@
 - Resolved
 
 ## Incident Overview:
-- After establishing initial access on November 19th, network monitoring detected the attacker returning approximately 72 hours later. Suspicious lateral movement and large data transfers were observed overnight on the file server.
+- After establishing initial access on November 19th, network monitoring detected an unauthorized entity returning approximately 72 hours later at precisely `2025-11-22T00:27:58.4166424Z`. Suspicious lateral movement and large data transfers were observed overnight on the file server. Evidence of credential access and exfiltration of data were followed by actions that allign with persistence for continued privlieges and anti-forensic attempts.
 
 ## Key Findings:
 Due to a compromised device, the unauthorized entity performed lateral movement and discovered a critical server `azuki-fileserver01` through remote share enumuration. The threat actor then continued to probe for privilege and network enumeration. They then implemented a staging directory and began steps for defensve evasion by attempting to hide the staging directory path through obfuscation. Using legitimate system utilities with network capabilities, the unauthorized entity then weaponized "Living off the Land" techniques to download a script into the staging directory.<br>
@@ -70,7 +70,7 @@ After establishing initial access on November 19, 2025, network monitoring withi
 
 From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service. Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`. Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`.<br>
 
-The earliest signs of malicious command execution point to `azuki-fileserver01` being compromised. This is likely due to 
+The earliest signs of malicious command execution 
 
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
