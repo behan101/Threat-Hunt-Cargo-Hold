@@ -151,7 +151,13 @@ Anti-forensic attempts were apparent by the deletion of the PowerShell history f
 
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
+- 78.141.196.6
+- ex.ps1 (SHA256):52749f37ff21af7fa72c2f6256df11740bb88b61eb5b6bf946d37a44a201435f
+
 ## Root Cause Analysis
+Insufficient network access controls allowed the unauthorized entity access to Azuki Import/Export CO., LTD.'s internal network.<br>
+
+The primary catalysts for the incident were traced back to the incident "Port of Entry", which identified the initial origin of the aunauthorized access to an administrative account. Approximately 72 hours after the initial access, the unauthorized entity returned to the compromised account and began attempts are lateral movement. Vulnerabilities within indentity access, controls, and network posture ultimately led to increase in exposure. Inadequate network segregation of crucial systems also compounded the attack surface area.
 
 # Technical Timeline
 ## Initial Compromise
