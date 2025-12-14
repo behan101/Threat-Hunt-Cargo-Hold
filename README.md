@@ -131,6 +131,11 @@ The credential dumping tool was renamed to a less conspicuous filename as `pd.ex
 
 <img width="1542" height="392" alt="image" src="https://github.com/user-attachments/assets/4cdeab92-9dfe-490b-be4e-89c7404f5bf4" />
 
+Credentials were extracted using a process memory dump. The correlation between the previously identified tool `pd.exe`, and the critical security process `lsass`, suggests that the tool used the command `"pd.exe" -accepteula -ma 876 C:\Windows\Logs\CBS\lsass.dmp` to extract credentials into the staging directory.
+
+<img width="1950" height="506" alt="image" src="https://github.com/user-attachments/assets/8bc85ab9-3341-4ce2-bb92-f45347318603" />
+
+Exfiltration of data was confirmed through the usage of command-line HTTP clients that enabled scriptable data transfers. This command syntax can be added to the detections rule of the defender team.
 
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
