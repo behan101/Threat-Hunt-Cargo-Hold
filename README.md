@@ -113,6 +113,25 @@ The PowerShell script `ex.ps1` was downloaded at using the command `"certutil.ex
 
 From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service. Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`. Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`.<br>
 
+<img width="1409" height="524" alt="image" src="https://github.com/user-attachments/assets/b59ab898-9cb3-4387-a55d-48f06d0fafed" />
+
+Along with other potentially sensitive or private information, a credential file was created within the staging directory named `IT-Admin-Passwords.csv`. The naming convention may have suggested the intent to obtain credentials with administrative access.
+
+<img width="1977" height="517" alt="image" src="https://github.com/user-attachments/assets/a956cee7-d900-4ed6-801a-baeb992e2a2a" />
+
+Using built-in commands, in an attempt to lower the chances of triggering security alerts, the data was staged from a network share.
+
+<img width="1838" height="491" alt="image" src="https://github.com/user-attachments/assets/db3dc076-d115-4175-a55d-d5d46e586394" />
+
+Cross-platform compression tools were utilized to compress and prepare the staged data for collection.
+
+<img width="1182" height="335" alt="image" src="https://github.com/user-attachments/assets/7e6d67df-9838-4aca-8e79-553c9d68cae5" />
+
+The credential dumping tool was renamed to a less conspicuous filename as `pd.exe`.
+
+<img width="1542" height="392" alt="image" src="https://github.com/user-attachments/assets/4cdeab92-9dfe-490b-be4e-89c7404f5bf4" />
+
+
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
 ## Root Cause Analysis
