@@ -1,6 +1,6 @@
 <img width="740" height="1110" alt="image" src="https://github.com/user-attachments/assets/2fb944a4-843c-4169-8b62-f8996a89fcfe" />
 
-# Threat-Hunt-Cargo-Hold
+# Threat-Hunt: Cargo-Hold
 
 # Index
 - [Executive Summary](#executive-summary)
