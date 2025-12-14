@@ -164,17 +164,10 @@ Anti-forensic attempts were apparent by the deletion of the PowerShell history f
 ## Recovery Times
 
 # Nature of the Attack
-
 ## Data Access & Exfiltration
-
 ## C2 Communications
-
 ## Containment Times
-
 ## Eradication Times
-
-## Nature of the Attack
-
 
 # Impact Analysis
 
