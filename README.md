@@ -170,11 +170,22 @@ November 22, 2025, `2025-11-19T19:10:49.2285576Z`: The threat actor then began t
 Novemeber 22, 2025, `2025-11-22T01:07:53.6430063Z`: Recursive copy commands were executed using built-in systems to stage data from a network share. This was most likely done in order to reduce the chances of triggering security alerts. At `2025-11-22T01:30:10.0981853Z`, the data was compressed using a cross-platform tool. Afterwards, at `2025-11-22T02:24:44.3906047Z`, the memory dump process for credential extraction began. The data was then exfiltrated using native windows utilities capable of making outbound HTTP requests with file payloads. Using a cloud file sharing service, the data was uploaded to the cloud service at `2025-11-22T01:59:54.2755596Z`.
 
 ## C2 Communications
+November 22, 2025, `2025-11-22T00:56:47.4100711Z`: The C2 IP address was external and identified as: `78.141.196.6`.
 
 ## Malware Deployment or Activity
+November 22, 2025, `2025-11-22T00:56:47.4100711Z`: Legitimate system utilities with network capabilities were weaponized to download malware to evade detection. The malware script `ex.ps1` was downloaded into the staging directory by using a legitimate Windows bianry.
+
 ## Containment Times
+- November 23, 2025, 02:30:10: Azuki Import/Export CO. LTD.'s SOC and DFIR teams detected the unauthorized activities and immediately isolated the devices and accounts from the network using VLAN segmentation.
+- November 23, 2025, 02:50:56: Azuki Import/Export CO. LTD.'s SOC and DFIR teams began investigations and determined the scope of the attack of all affected systems.
+- November 23, 2025, 07:30:56: Azuki Import/Export CO. LTD.'s SOC and DFIR teams updated firewall rules to block the known C2 IP address, effectively cutting off the unauthorized entity's remote access.
+
 ## Eradication Times
+- November 23, 2025, 07:45:23: A specialized malware removal tool was used to scan and clean the affected systems. Remote Access Tools (RATs) were identified during the investigation and removed as well.
+- November 23, 2025, 08:20:37: The login credentials of the affected accounts and all the potential credentials stolen were reset.
+
 ## Recovery Times
+November 23, 2025, 09:14:48: After ensuring the affected devices were free of malware and remote access tools, the SOC team restored the system from a verified backup.
 
 # Nature of the Attack
 ## Data Access & Exfiltration
