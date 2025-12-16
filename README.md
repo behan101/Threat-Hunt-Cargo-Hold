@@ -157,13 +157,20 @@ Anti-forensic attempts were apparent by the deletion of the PowerShell history f
 ## Root Cause Analysis
 Insufficient network access controls allowed the unauthorized entity access to Azuki Import/Export CO., LTD.'s internal network.<br>
 
-The primary catalysts for the incident were traced back to Incident: "Port of Entry", which has identified the initial origin of the unauthorized access to an administrative account. Approximately 72 hours after the initial access, the unauthorized entity returned to the compromised account and began attempts at lateral movement. Vulnerabilities within indentity access controls and network posture ultimately led to an increase in exposure. Inadequate network segregation of crucial systems also compounded the attack surface area.
+The primary catalysts for the incident were traced back to Incident: "Port of Entry", which has identified the initial origin of the unauthorized access to an administrative account. Approximately 72 hours after the initial access, the unauthorized entity returned to the compromised account and began attempts at lateral movement. Vulnerabilities within indentity access controls and network posture ultimately led to an increase in exposure. Internal threat detection and mitigation techniques such as Zero Trust and threat hunting may have prevented the initial attack vector. Inadequate network segregation of crucial systems also compounded the attack surface area.
 
 # Technical Timeline
 ## Initial Compromise
+November 22, 2025, `2025-11-22T00:27:58.4166424Z`: After establishing intitial access, the unauthorized entity waited days (dwell time) before continuing their operations. The source IP address of the returning connection was `159.26.106.98`. Lateral movement began once the re-entry was established.
+
 ## Lateral Movement
+November 22, 2025, `2025-11-19T19:10:49.2285576Z`: The threat actor then began to search for lateral movement targets based on their access to sensitive data or network privileges. The file server `azuki-fileserver01` was compromised along with the administrator account `fileadmin`.
+
 ## Data Access & Exfiltration
+Novemeber 22, 2025, `2025-11-22T01:07:53.6430063Z`: Recursive copy commands were executed using built-in systems to stage data from a network share. This was most likely done in order to reduce the chances of triggering security alerts. At `2025-11-22T01:30:10.0981853Z`, the data was compressed using a cross-platform tool. Afterwards, at `2025-11-22T02:24:44.3906047Z`, the memory dump process for credential extraction began. The data was then exfiltrated using native windows utilities capable of making outbound HTTP requests with file payloads. Using a cloud file sharing service, the data was uploaded to the cloud service at `2025-11-22T01:59:54.2755596Z`.
+
 ## C2 Communications
+
 ## Malware Deployment or Activity
 ## Containment Times
 ## Eradication Times
