@@ -188,24 +188,43 @@ November 22, 2025, `2025-11-22T00:56:47.4100711Z`: Legitimate system utilities w
 November 23, 2025, 09:14:48: After ensuring the affected devices were free of malware and remote access tools, the SOC team restored the system from a verified backup.
 
 # Nature of the Attack
-## Data Access & Exfiltration
-## C2 Communications
-## Containment Times
-## Eradication Times
+The modus operandi of the unauthorized entity used various tactics, techniques, and procedures they employed throughout their intrusion.
+
+- Defense Evasion
+The modification of file system attributes to hide the staging directory along with the use of legitimate system utilities show sophistication and intent to hide from detection. The malicious actor used these defense evasion techniques in attempt to hide the download and execution of malware. Windows binaries were observed to have been abused as a "Living Off The Land" Bin (LOLBin), for retrieving remote payloads.
+- OpSec and Persistence
+Renaming of credential dumping tools occured as basic OPSEC practice to evade signature-based detection. After exfiltration, the attacker showed intent to maintain their access through persistence by creating a registry value that executes on startup or user logon. In addition, a beacon file process masquerading as legitimate Windows components indicate their deceptive nature.
 
 # Impact Analysis
+In this segment, we should dive deeper into the initial stakeholder impact analysis presented at the outset of this report. Given the company's unique internal structure, business landscape, and regulatory obligations, it's crucial to offer a comprehensive evaluation of the incident's implications for every affected party.
 
 # Response and Recovery Analysis
-
 # Immediate Response Actions
 ## Revocation of Access
 ### Identification of Compromised Accounts / Systems:
+Identification of Compromised Accounts / Systems: Using Microsoft Defender Advanced Hunting, suspicious activities associated with the intrusion were flagged on the following accounts and devices:
+### Devices:
+- `azuki-sl`
+- `azuki-fileserver01`
+### Accounts:
+- `fileadmin`
+- `kenji.sato`
+
 ### Timeframe:
+Unauthorized activities were detected at `2025-11-22T00:27:58.4166424Z`. Access was terminated by November 23, 2025, 07:30:56 upon updating firewall rules that blocked the C2 IP address.
+
 ### Method of Revocation:
+Alongside the firewall rules, Active Directory policies were applied to force log-off sessions from possibly compromised accounts. Additionally, affected user credentials were reset.
+
 ### Impact:
+The immediate revocation of access halted potential lateral movement, preventing futher system compromise and data exfiltration attempts.
+
 ## Containment Strategy
 ### Short-Term Containment:
+As part of the initial response, VLAN segmentation was promptly applied, which effectively isolated the affected server and devices from the rest of the internal network. This hindered any futher lateral movement by the threat actor.
+
 ### Long-Term Containment:
+
 ### Effectiveness:
 
 # Eradication Measures
