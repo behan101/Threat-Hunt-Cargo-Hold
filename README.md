@@ -157,23 +157,23 @@ Anti-forensic attempts were apparent by the deletion of the PowerShell history f
 ## Root Cause Analysis
 Insufficient network access controls allowed the unauthorized entity access to Azuki Import/Export CO., LTD.'s internal network.<br>
 
-The primary catalysts for the incident were traced back to Incident: "Port of Entry", which has identified the initial origin of the unauthorized access to an administrative account. Approximately 72 hours after the initial access, the unauthorized entity returned to the compromised account and began attempts at lateral movement. Vulnerabilities within indentity access controls and network posture ultimately led to an increase in exposure. Internal threat detection and mitigation techniques such as Zero Trust and threat hunting may have prevented the initial attack vector. Inadequate network segregation of crucial systems also compounded the attack surface area.
+The primary catalysts for the incident were traced back to Incident: "Port of Entry", which has identified the initial origin of the unauthorized access to an administrative account. Approximately 72 hours after the initial access, the unauthorized entity returned to the compromised account and began attempts at lateral movement. Vulnerabilities within identity access controls and network posture ultimately led to an increase in exposure. Internal threat detection and mitigation techniques such as Zero Trust and threat hunting may have prevented the initial attack vector. Inadequate network segregation of crucial systems also compounded the attack surface area.
 
 # Technical Timeline
 ## Initial Compromise
-November 22, 2025, `2025-11-22T00:27:58.4166424Z`: After establishing intitial access, the unauthorized entity waited days (dwell time) before continuing their operations. The source IP address of the returning connection was `159.26.106.98`. Lateral movement began once the re-entry was established.
+November 22, 2025, `2025-11-22T00:27:58.4166424Z`: After establishing initial access, the unauthorized entity waited days (dwell time) before continuing their operations. The source IP address of the returning connection was `159.26.106.98`. Lateral movement began once the re-entry was established.
 
 ## Lateral Movement
 November 22, 2025, `2025-11-19T19:10:49.2285576Z`: The threat actor then began to search for lateral movement targets based on their access to sensitive data or network privileges. The file server `azuki-fileserver01` was compromised along with the administrator account `fileadmin`.
 
 ## Data Access & Exfiltration
-Novemeber 22, 2025, `2025-11-22T01:07:53.6430063Z`: Recursive copy commands were executed using built-in systems to stage data from a network share. This was most likely done in order to reduce the chances of triggering security alerts. At `2025-11-22T01:30:10.0981853Z`, the data was compressed using a cross-platform tool. Afterwards, at `2025-11-22T02:24:44.3906047Z`, the memory dump process for credential extraction began. The data was then exfiltrated using native windows utilities capable of making outbound HTTP requests with file payloads. Using a cloud file sharing service, the data was uploaded to the cloud service at `2025-11-22T01:59:54.2755596Z`.
+November 22, 2025, `2025-11-22T01:07:53.6430063Z`: Recursive copy commands were executed using built-in systems to stage data from a network share. This was most likely done in order to reduce the chances of triggering security alerts. At `2025-11-22T01:30:10.0981853Z`, the data was compressed using a cross-platform tool. Afterwards, at `2025-11-22T02:24:44.3906047Z`, the memory dump process for credential extraction began. The data was then exfiltrated using native windows utilities capable of making outbound HTTP requests with file payloads. Using a cloud file sharing service, the data was uploaded to the cloud service at `2025-11-22T01:59:54.2755596Z`.
 
 ## C2 Communications
 November 22, 2025, `2025-11-22T00:56:47.4100711Z`: The C2 IP address was external and identified as: `78.141.196.6`.
 
 ## Malware Deployment or Activity
-November 22, 2025, `2025-11-22T00:56:47.4100711Z`: Legitimate system utilities with network capabilities were weaponized to download malware to evade detection. The malware script `ex.ps1` was downloaded into the staging directory by using a legitimate Windows bianry.
+November 22, 2025, `2025-11-22T00:56:47.4100711Z`: Legitimate system utilities with network capabilities were weaponized to download malware to evade detection. The malware script `ex.ps1` was downloaded into the staging directory by using a legitimate Windows binary.
 
 ## Containment Times
 - November 23, 2025, 02:30:10: Azuki Import/Export CO. LTD.'s SOC and DFIR teams detected the unauthorized activities and immediately isolated the devices and accounts from the network using VLAN segmentation.
@@ -191,9 +191,9 @@ November 23, 2025, 09:14:48: After ensuring the affected devices were free of ma
 The modus operandi of the unauthorized entity used various tactics, techniques, and procedures they employed throughout their intrusion.
 
 - Defense Evasion
-The modification of file system attributes to hide the staging directory along with the use of legitimate system utilities show sophistication and intent to hide from detection. The malicious actor used these defense evasion techniques in attempt to hide the download and execution of malware. Windows binaries were observed to have been abused as a "Living Off The Land" Bin (LOLBin), for retrieving remote payloads.
+The modification of file system attributes to hide the staging directory along with the use of legitimate system utilities show sophistication and intent to hide from detection. The malicious actor used these defense evasion techniques in an attempt to hide the download and execution of malware. Windows binaries were observed to have been abused as a "Living Off The Land" Bin (LOLBin), for retrieving remote payloads.
 - OpSec and Persistence
-Renaming of credential dumping tools occured as basic OPSEC practice to evade signature-based detection. After exfiltration, the attacker showed intent to maintain their access through persistence by creating a registry value that executes on startup or user logon. In addition, a beacon file process masquerading as legitimate Windows components indicate their deceptive nature.
+Renaming of credential dumping tools occurred as basic OPSEC practice to evade signature-based detection. After exfiltration, the attacker showed intent to maintain their access through persistence by creating a registry value that executes on startup or user logon. In addition, a beacon file process masquerading as legitimate Windows components indicate their deceptive nature.
 
 # Impact Analysis
 In this segment, we should dive deeper into the initial stakeholder impact analysis presented at the outset of this report. Given the company's unique internal structure, business landscape, and regulatory obligations, it's crucial to offer a comprehensive evaluation of the incident's implications for every affected party.
@@ -217,17 +217,17 @@ Unauthorized activities were detected at `2025-11-22T00:27:58.4166424Z`. Access 
 Alongside the firewall rules, Active Directory policies were applied to force log-off sessions from possibly compromised accounts. Additionally, affected user credentials were reset.
 
 ### Impact:
-The immediate revocation of access halted potential lateral movement, preventing futher system compromise and data exfiltration attempts.
+The immediate revocation of access halted potential lateral movement, preventing further system compromise and data exfiltration attempts.
 
 ## Containment Strategy
 ### Short-Term Containment:
-As part of the initial response, VLAN segmentation was promptly applied, which effectively isolated the affected server and devices from the rest of the internal network. This hindered any futher lateral movement by the threat actor.
+As part of the initial response, VLAN segmentation was promptly applied, which effectively isolated the affected server and devices from the rest of the internal network. This hindered any further lateral movement by the threat actor.
 
 ### Long-Term Containment:
-The next phase of containment involves a robust implementation of network segmentation, including specific deparments or critical infrastructure run on isolated network segments, and stricter network access controls. This will ensure that only authorized devices have access to an organization's internal network significantly reduce the attack surface for future threats.
+The next phase of containment involves a robust implementation of network segmentation, including specific departments or critical infrastructure run on isolated network segments, and stricter network access controls. This will ensure that only authorized devices have access to an organization's internal network, significantly reducing the attack surface for future threats.
 
 ### Effectiveness:
-The containment strategies were successful in ensuring that the threat actor did not escalate privileges or move laterally to adjacent systems, ultimately limiting the inciden'ts impact.
+The containment strategies were successful in ensuring that the threat actor did not escalate privileges or move laterally to adjacent systems, ultimately limiting the incident's impact.
 
 # Eradication Measures
 ## Malware Removal:
@@ -237,13 +237,13 @@ The containment strategies were successful in ensuring that the threat actor did
 
 ## System Patching:
 ### Vulnerability Identification:
-Multiple vulnerabilities with the current Role Based Access controls were identified, which lead to the initial compromise. The lateral movement of the intial compromised account allowed the threat actor to traverse the company's internal network share and target accounts for privilege esclation.
+Multiple vulnerabilities with the current Role Based Access controls were identified, which lead to the initial compromise. The lateral movement of the initial compromised account allowed the threat actor to traverse the company's internal network share and target accounts for privilege escalation.
 
 ### Patch Management:
 All systems and accounts were promptly updated with revisions to access controls. A more robust network segmentation of the company's servers and internal networks were implemented with a critical priority.
 
 ### Fallback Procedures:
-System snapshots and configurations were backed up before patching. This will ensure a swift rollback if the update introduces any system instablities.
+System snapshots and configurations were backed up before patching. This will ensure a swift rollback if the update introduces any system instabilities.
 
 # Recovery Steps
 ## Data Restoration
