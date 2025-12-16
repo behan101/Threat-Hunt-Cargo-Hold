@@ -224,33 +224,62 @@ The immediate revocation of access halted potential lateral movement, preventing
 As part of the initial response, VLAN segmentation was promptly applied, which effectively isolated the affected server and devices from the rest of the internal network. This hindered any futher lateral movement by the threat actor.
 
 ### Long-Term Containment:
+The next phase of containment involves a robust implementation of network segmentation, including specific deparments or critical infrastructure run on isolated network segments, and stricter network access controls. This will ensure that only authorized devices have access to an organization's internal network significantly reduce the attack surface for future threats.
 
 ### Effectiveness:
+The containment strategies were successful in ensuring that the threat actor did not escalate privileges or move laterally to adjacent systems, ultimately limiting the inciden'ts impact.
 
 # Eradication Measures
 ## Malware Removal:
+- Identification: Suspicious processes were flagged on the compromised systems, and the forensic examination revealed the download and execution of malware. Confirmations of persistence through a remote access tool were identified as well.
+- Removal Techniques: Using a specialized malware removal tool, all identified malicious payloads, including the remote access tool, were eradicated from the affected systems.
+- Verification: Post-removal, a secondary scan was initiated along with a heuristic analysis to ensure no remnants of the malware persisted.
+
 ## System Patching:
 ### Vulnerability Identification:
+Multiple vulnerabilities with the current Role Based Access controls were identified, which lead to the initial compromise. The lateral movement of the intial compromised account allowed the threat actor to traverse the company's internal network share and target accounts for privilege esclation.
+
 ### Patch Management:
+All systems and accounts were promptly updated with revisions to access controls. A more robust network segmentation of the company's servers and internal networks were implemented with a critical priority.
+
 ### Fallback Procedures:
+System snapshots and configurations were backed up before patching. This will ensure a swift rollback if the update introduces any system instablities.
 
 # Recovery Steps
 ## Data Restoration
 ### Backup Validation:
+Prior to data restoration, backup checksums were cross-verified to ensure the integrity of the backup data.
+
 ### Restoration Process:
+The SOC team meticulously restored both affected systems from validated backups.
+
 ### Data Integrity Checks:
+Post-restoration, cryptographic hashing using SHA-256 was employed to verify the integrity and authenticity of the restored data.
+
 ## System Validation
 ### Security Measures:
+The systems' firewalls and intrusion detection systems were updated with the latest threat intelligence feeds, ensuring any indicators of compromise (IoCs) from this incident would trigger instant alerts.
+
 ### Operational Checks:
+Before reintroducing systems into the live environment, a battery of operational tests, including load and stress testing, was conducted to confirm the systems' stability and performance.
 
 # Post-Incident Actions
 ## Monitoring
 ### Enhanced Monitoring Plans:
+The monitoring paradigm has been revamped to include behavioral analytics, focusing on spotting deviations from baseline behaviors which could indicate compromise. In addition, inventory and asset management activities commenced to facilitate the implementation of network access controls.
+
 ### Tools and Technologies:
+Leveraging the capabilities of the existing Microsoft Defender, advanced correlation rules will be implemented, specifically designed to detect the tactics, techniques, and procedures (TTPs) identified in this breach.
+
 ## Lessons Learned
 ### Gap Analysis:
+The incident shed light on certain gaps, primarily around network access controls, network segregation, and user training about potential phishing attempts with malicious documents.
+
 ### Recommendations for Improvement:
+Initiatives around inventory and asset management, threat monitoring, and improved security awareness training are prioritized.
+
 ### Future Strategy:
+A forward-looking strategy will involve more granular network access controls and network segmentation, adopting a zero-trust security model, and increasing investments in security awareness training.
 
 # Annex A
 
