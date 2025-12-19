@@ -287,12 +287,12 @@ A forward-looking strategy will involve more granular network access controls an
 |              Time              |                                                              Activity                                                              |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | `2025-11-22T00:27:58.4166424Z` | Returning connection source `159.26.106.98` after dwell time of approximately 72 hours later of the initial compromise. The IP address was different than the original compromise. |
-| `2025-11-19T19:10:49.2285576Z` | Lateral movement from the compromised device to the file server `azuki-fileserver01`. The DeviceProcessEvent `mstsc.exe`, which was known to be associated with the orginal compromise,     |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
+| `2025-11-19T19:10:49.2285576Z` | Lateral movement from the compromised device to the file server `azuki-fileserver01`. The DeviceProcessEvent `mstsc.exe`, which was known to be associated with the orginal compromise, correlated successful remote logins. |
+| `2025-11-19T19:10:49.2662627Z` | Unauthorized access to the administrator account `fileadmin` was identified with an unknown LogonType. |
+| `2025-11-22T00:40:54.8271951Z` | `"net.exe" share` command was executed in order to enumerate local network shares. Initial attempts at discovery began at this timeframe. |
+| `2025-11-22T00:42:01.9579347Z` | `"net.exe" view \\10.1.0.188` command was executed to enumerate remote shares. |
+| `2025-11-22T00:42:24.1217046Z` | Privilege enumeration techniques were implemented with a Windows native utility using the executable command `"whoami.exe" /all`. |
+| `2025-11-22T00:42:46.3655894Z` | Network configuration enumeration using a Windows native utility were executed using `"ipconfig.exe" /all`. |
 |                |                                                                                                                                    |
 |                |                                                                                                                                    |
 |                |                                                                                                                                    |
