@@ -284,10 +284,10 @@ A forward-looking strategy will involve more granular network access controls an
 # Annex A
 
 # Technical Timeline
-|      Time      |                                                              Activity                                                              |
-|----------------|------------------------------------------------------------------------------------------------------------------------------------|
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
+|              Time              |                                                              Activity                                                              |
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `2025-11-22T00:27:58.4166424Z` | Returning connection source `159.26.106.98` after dwell time of approximately 72 hours later of the initial compromise. The IP address was different than the original compromise. |
+| `2025-11-19T19:10:49.2285576Z` | Lateral movement from the compromised device to the file server `azuki-fileserver01`. The DeviceProcessEvent `mstsc.exe`, which was known to be associated with the orginal compromise,     |
 |                |                                                                                                                                    |
 |                |                                                                                                                                    |
 |                |                                                                                                                                    |
