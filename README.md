@@ -306,3 +306,29 @@ A forward-looking strategy will involve more granular network access controls an
 | `2025-11-22T02:10:50.7952326Z` | `FileShareSync`, a registry value name, was added and modified in order to appear as a legitimate boot or logon autostart execution software. This was done in order to establish persistence. |
 | `2025-11-22T02:10:50.7952326Z` | The PowerShell script `svchost.ps1` was masqueraded as a legitimate Windows component to avoid suspicion. This script was identified as the persistence beacon. |
 | `2025-11-22T02:26:01.1661095Z` | Anti-forensic techniques were implemented in order to avoid evidence collection. The PowerShell history file `ConsoleHost_history.txt` was deleted by the attacker. This file logs interactive PowerShell commands across sessions. |
+
+## MITRE ATT&CK Technique Mapping – Technical Timeline
+
+| Time (UTC) | Activity Summary | Tactic | Technique ID | Technique Name | Justification |
+|------------|-----------------|--------|--------------|----------------|---------------|
+| 2025-11-22 00:27 | Return connection after ~72h dwell time from new IP | Command and Control | T1071.001 | Application Layer Protocol: Web Protocols | Delayed callback behavior consistent with C2 beaconing over common web protocols |
+| 2025-11-19 19:10 | RDP lateral movement using `mstsc.exe` | Lateral Movement | T1021.001 | Remote Services: RDP | Successful RDP logons from compromised host to file server |
+| 2025-11-19 19:10 | Unauthorized access to administrator account `fileadmin` | Privilege Escalation / Credential Access | T1078 | Valid Accounts | Use of legitimate admin credentials with unknown logon type |
+| 2025-11-22 00:40 | `net.exe share` enumeration | Discovery | T1135 | Network Share Discovery | Enumerated local SMB shares |
+| 2025-11-22 00:42 | `net.exe view \\10.1.0.188` | Discovery | T1135 | Network Share Discovery | Enumerated remote network shares |
+| 2025-11-22 00:42 | `whoami.exe /all` privilege enumeration | Discovery | T1033 | System Owner/User Discovery | Enumerated group memberships and privileges |
+| 2025-11-22 00:42 | `ipconfig.exe /all` | Discovery | T1016 | System Network Configuration Discovery | Identified network interfaces and configuration |
+| 2025-11-22 00:55 | `attrib.exe +h +s` used to hide directory | Defense Evasion | T1564.001 | Hide Artifacts: Hidden Files and Directories | Modified file attributes to conceal staging directory |
+| 2025-11-22 00:55 | Creation of staging directory `C:\Windows\Logs\CBS` | Defense Evasion | T1074.001 | Data Staged: Local Data Staging | Organized data prior to exfiltration |
+| 2025-11-22 00:56 | `certutil.exe` downloads PowerShell payload | Command and Control | T1105 | Ingress Tool Transfer | Living-off-the-land binary used to retrieve malicious script |
+| 2025-11-22 01:07 | Creation of `IT-Admin-Passwords.csv` | Credential Access | T1555 | Credentials from Password Stores | File indicates harvested credentials collected for later use |
+| 2025-11-22 01:07 | `xcopy.exe` replicates file share contents | Collection | T1039 | Data from Network Shared Drive | Collected sensitive data from network share |
+| 2025-11-22 01:30 | `tar.exe` compresses credentials | Collection | T1560.001 | Archive Collected Data: Archive via Utility | Prepared data for exfiltration using native archiving |
+| 2025-11-22 02:03 | Credential dumping tool renamed to `pd.exe` | Defense Evasion | T1036.005 | Masquerading: Match Legitimate Name | Renaming tool to evade signature-based detection |
+| 2025-11-22 02:24 | LSASS memory dump (`lsass.dmp`) | Credential Access | T1003.001 | OS Credential Dumping: LSASS Memory | Direct dump of LSASS process memory |
+| 2025-11-22 01:59 | `curl.exe` uploads archive to file.io | Exfiltration | T1567.002 | Exfiltration Over Web Services | Used legitimate cloud file-sharing service |
+| 2025-11-22 01:59 | Use of cloud service file.io | Exfiltration | T1567 | Exfiltration Over Web Service | Data exfiltration via third-party service |
+| 2025-11-22 02:10 | Registry autorun value `FileShareSync` added | Persistence | T1547.001 | Boot or Logon Autostart Execution: Registry Run Keys | Persistence via registry modification |
+| 2025-11-22 02:10 | `svchost.ps1` masquerading | Defense Evasion | T1036.003 | Masquerading: Rename System Utilities | Script disguised as legitimate Windows component |
+| 2025-11-22 02:26 | PowerShell history file deleted | Defense Evasion | T1070.003 | Indicator Removal on Host: Clear Command History | Anti-forensic activity to remove evidence |
+
