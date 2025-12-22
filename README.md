@@ -19,7 +19,7 @@
 - [Post-Incident Actions](#post-incident-actions)
 - [Annex A](#annex-a)
 - [Technical Timeline](#technical-timeline-1)
-- [MITRE ATT&CK Technique Mapping - Technical Timeline](#mitre-attck-technique-mapping--technical-timeline)
+- [MITRE ATT&CK Technique Mapping](#mitre-attck-technique-mapping--technical-timeline)
 
 # Executive Summary
 ## Incident ID:
